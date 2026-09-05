@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaGestão | Sistema de Gestão de Funcionários</title>
+  <meta name="description" content="Cadastro, edição, listagem e exclusão de funcionários para sistemas de gestão de RH.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+  <header class="topbar">
+    <div class="topbar__inner">
+      <p class="brand">
+        <span class="brand__mark" aria-hidden="true">N</span>
+        NovaGestão
+      </p>
+
+      <nav class="nav" aria-label="Navegação principal">
+        <ul class="nav__list">
+          <li><a href="#cadastro">Cadastro</a></li>
+          <li><a href="#equipe" aria-current="page">Equipe</a></li>
+          <li><a href="#relatorios">Relatórios</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo-principal">
+
+    <section class="hero" aria-labelledby="hero-titulo">
+      <p class="hero__eyebrow">Painel de Recursos Humanos</p>
+      <h1 id="hero-titulo">Cadastre e acompanhe sua equipe em um só lugar</h1>
+      <p class="hero__lead">Registre novos colaboradores e consulte quem está ativo, em quais setores e desde quando — tudo em uma interface simples e acessível.</p>
+    </section>
+
+    <div class="grid-layout">
+
+      <section class="card" id="cadastro" aria-labelledby="cadastro-titulo">
+        <h2 id="cadastro-titulo"><span id="form-titulo-texto">Cadastrar colaborador</span></h2>
+        <p class="card__hint">Os campos marcados com <span aria-hidden="true">*</span><span class="sr-only">obrigatório</span> são obrigatórios.</p>
+
+        <form id="form-cadastro" action="#" method="post" novalidate>
+          <input type="hidden" id="funcionario-id" name="funcionario-id" value="">
+
+          <fieldset>
+            <legend>Dados pessoais</legend>
+
+            <div class="field">
+              <label for="nome">Nome completo <span aria-hidden="true">*</span></label>
+              <input type="text" id="nome" name="nome" autocomplete="name" aria-describedby="nome-erro" required>
+              <span class="field-error" id="nome-erro" role="alert"></span>
+            </div>
+
+            <div class="field">
+              <label for="email">E-mail corporativo <span aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" autocomplete="email" aria-describedby="email-erro" required>
+              <span class="field-error" id="email-erro" role="alert"></span>
+            </div>
+
+            <div class="field">
+              <label for="nascimento">Data de nascimento <span aria-hidden="true">*</span></label>
+              <input type="date" id="nascimento" name="nascimento" autocomplete="bday" aria-describedby="nascimento-erro" required>
+              <span class="field-error" id="nascimento-erro" role="alert"></span>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Endereço</legend>
+
+            <div class="field">
+              <label for="cep">CEP <span aria-hidden="true">*</span></label>
+              <div class="field-inline">
+                <input type="text" id="cep" name="cep" inputmode="numeric" placeholder="00000-000" maxlength="9" aria-describedby="cep-erro cep-status" required>
+                <button type="button" class="btn btn--ghost btn--small" id="btn-buscar-cep">Buscar</button>
+              </div>
+              <span class="field-status" id="cep-status" aria-live="polite"></span>
+              <span class="field-error" id="cep-erro" role="alert"></span>
+            </div>
+
+            <div class="field">
+              <label for="logradouro">Logradouro <span aria-hidden="true">*</span></label>
+              <input type="text" id="logradouro" name="logradouro" autocomplete="address-line1" aria-describedby="logradouro-erro" required>
+              <span class="field-error" id="logradouro-erro" role="alert"></span>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="bairro">Bairro <span aria-hidden="true">*</span></label>
+                <input type="text" id="bairro" name="bairro" autocomplete="address-level3" aria-describedby="bairro-erro" required>
+                <span class="field-error" id="bairro-erro" role="alert"></span>
+              </div>
+
+              <div class="field">
+                <label for="numero">Número <span aria-hidden="true">*</span></label>
+                <input type="text" id="numero" name="numero" inputmode="numeric" aria-describedby="numero-erro" required>
+                <span class="field-error" id="numero-erro" role="alert"></span>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field field--grow">
+                <label for="cidade">Cidade <span aria-hidden="true">*</span></label>
+                <input type="text" id="cidade" name="cidade" autocomplete="address-level2" aria-describedby="cidade-erro" required>
+                <span class="field-error" id="cidade-erro" role="alert"></span>
+              </div>
+
+              <div class="field field--small">
+                <label for="uf">UF <span aria-hidden="true">*</span></label>
+                <input type="text" id="uf" name="uf" maxlength="2" autocomplete="address-level1" aria-describedby="uf-erro" required>
+                <span class="field-error" id="uf-erro" role="alert"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Dados funcionais</legend>
+
+            <div class="field">
+              <label for="setor">Setor <span aria-hidden="true">*</span></label>
+              <select id="setor" name="setor" aria-describedby="setor-erro" required>
+                <option value="">Selecione um setor</option>
+                <option value="ti">Tecnologia da Informação</option>
+                <option value="rh">Recursos Humanos</option>
+                <option value="financeiro">Financeiro</option>
+                <option value="operacoes">Operações</option>
+              </select>
+              <span class="field-error" id="setor-erro" role="alert"></span>
+            </div>
+
+            <div class="field">
+              <label for="admissao">Data de admissão <span aria-hidden="true">*</span></label>
+              <input type="date" id="admissao" name="admissao" aria-describedby="admissao-erro" required>
+              <span class="field-error" id="admissao-erro" role="alert"></span>
+            </div>
+
+            <fieldset class="radio-group">
+              <legend>Status</legend>
+              <div class="radio-option">
+                <input type="radio" id="status-ativo" name="status" value="ativo" checked>
+                <label for="status-ativo">Ativo</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="status-inativo" name="status" value="inativo">
+                <label for="status-inativo">Inativo</label>
+              </div>
+            </fieldset>
+          </fieldset>
+
+          <p class="status-msg" id="status-envio" aria-live="polite"></p>
+
+          <div class="form__actions">
+            <button type="button" class="btn btn--ghost" id="btn-limpar">Limpar campos</button>
+            <button type="button" class="btn btn--ghost" id="btn-cancelar-edicao" hidden>Cancelar edição</button>
+            <button type="submit" class="btn btn--primary" id="btn-salvar">Cadastrar colaborador</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card card--wide" id="equipe" aria-labelledby="equipe-titulo">
+        <div class="card__header">
+          <h2 id="equipe-titulo">Equipe cadastrada</h2>
+          <p class="card__hint" id="contador-equipe">Carregando colaboradores…</p>
+        </div>
+
+        <div class="table-scroll">
+          <table>
+            <caption class="sr-only">Lista de colaboradores cadastrados com matrícula, nome, setor, admissão, status e ações</caption>
+            <thead>
+              <tr>
+                <th scope="col">Matrícula</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Setor</th>
+                <th scope="col">Admissão</th>
+                <th scope="col">Status</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-equipe-corpo">
+              <!-- Linhas geradas dinamicamente via JavaScript (fetch na API) -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+
+    <aside class="tip" aria-labelledby="tip-titulo" id="relatorios">
+      <h2 id="tip-titulo">Sobre os relatórios</h2>
+      <p>Os dados cadastrados aqui alimentam os relatórios mensais de headcount por setor, disponíveis para exportação pela equipe de RH.</p>
+    </aside>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 NovaGestão. Atividade acadêmica — CRUD integrado a banco de dados (Supabase/PostgreSQL).</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
